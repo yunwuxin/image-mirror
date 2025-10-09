@@ -119,19 +119,19 @@ jobs:
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}" 
-          echo "::set-output name=body::$body"
+          echo "body=$body" >> $GITHUB_OUTPUT
 
           dockerhubImage="$(cat dockerhub-image.yml)"
           dockerhubImage="${dockerhubImage//'%'/'%25'}"
           dockerhubImage="${dockerhubImage//$'\n'/'%0A'}"
           dockerhubImage="${dockerhubImage//$'\r'/'%0D'}" 
-          echo "::set-output name=dockerhubImage::$dockerhubImage"
+          echo "dockerhubImage=$dockerhubImage" >> $GITHUB_OUTPUT
 
           sourceImage="$(cat images-init.yml)"
           sourceImage="${sourceImage//'%'/'%25'}"
           sourceImage="${sourceImage//$'\n'/'%0A'}"
           sourceImage="${sourceImage//$'\r'/'%0D'}" 
-          echo "::set-output name=sourceImage::$sourceImage"
+          echo "sourceImage=$sourceImage" >> $GITHUB_OUTPUT
 
       - name: Find Comment
         if: steps.check_body.outputs.is_image_format == 'true'      
